@@ -3,14 +3,18 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 
 Route::get('/', function () {
+    $slider = Slider::with(['images' => function ($query) {
+        $query->where('imageable_type', Slider::class);
+    }])->where('status','active')->orderBy('serial','asc')->get();
 
-    return view('frontend.home.home');
+    return view('frontend.home.home',['slider'=>$slider]);
 });
 
 
