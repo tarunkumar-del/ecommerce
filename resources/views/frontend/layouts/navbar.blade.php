@@ -7,7 +7,31 @@
                          <i class="far fa-bars"></i>
                      </div>
                      <ul class="wsus_menu_cat_item show_home toggle_menu">
-                         <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li>
+                         @foreach ($category as $catdetails)
+                             <li><a @if (count($catdetails->SubCategory) > 0) class="wsus__droap_arrow" @endif href="#">
+                                     @if ($catdetails->icon != null)
+                                         <i class="{{ $catdetails->icon }}"></i>
+                                     @endif {{ $catdetails->name }}
+                                 </a>
+                                 @if (count($catdetails->SubCategory)>0)
+                                 <ul  class="wsus_menu_cat_droapdown" >
+                                     @foreach ($catdetails->SubCategory as $subcatdetails)
+                                             <li><a href="#">{{ $subcatdetails->name }} @if (count($subcatdetails->childcategories)>0)<i class="fas fa-angle-right"></i> @endif</a>
+                                                 @if (count($subcatdetails->childcategories)>0)
+                                                     <ul class="wsus__sub_category">
+                                                         @foreach ($subcatdetails->childcategories as $childetails)
+                                                             <li><a href="#">{{ $childetails->name }}</a></li>
+                                                         @endforeach
+                                                     </ul>
+                                                 @endif
+                                             </li>
+
+                                     @endforeach
+                                    </ul>
+                                 @endif
+                             </li>
+                         @endforeach
+
                          <li><a class="wsus__droap_arrow" href="#"><i class="fal fa-tshirt"></i> Fashion </a>
                              <ul class="wsus_menu_cat_droapdown">
                                  <li><a href="#">New Arrivals <i class="fas fa-angle-right"></i></a>
@@ -308,7 +332,7 @@
                      <ul class="wsus__menu_item wsus__menu_item_right">
                          <li><a href="contact.html">contact</a></li>
                          @if (Auth::check())
-                           <li><a href="{{ route(session('type') . '.dashboard') }}">my account</a>
+                             <li><a href="{{ route(session('type') . '.dashboard') }}">my account</a>
                              </li>
                          @endif
                          @if (!Auth::check())

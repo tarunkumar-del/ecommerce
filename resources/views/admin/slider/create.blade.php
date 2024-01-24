@@ -48,8 +48,8 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control" name="status">
-                                      <option value="active" {{ old('status') == 'Active' ? 'selected' : '' }}>Active</option>
-                                      <option value="inactive" {{ old('status') == 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                                      <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
+                                      <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
                                     </select>
                                   </div>
                                 <button type="submit" class="btn btn-primary">Create</button>

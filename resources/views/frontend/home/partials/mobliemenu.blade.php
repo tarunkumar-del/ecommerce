@@ -1,4 +1,3 @@
-
 <section id="wsus__mobile_menu">
     <span class="wsus__mobile_menu_close"><i class="fal fa-times"></i></span>
     <ul class="wsus__mobile_menu_header_icon d-inline-flex">
@@ -27,6 +26,32 @@
             <div class="wsus__mobile_menu_main_menu">
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <ul class="wsus_mobile_menu_category">
+                        @foreach ($category as $catdetails)
+                            <li><a @if (count($catdetails->SubCategory) > 0) class="accordion-button collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseThreew" aria-expanded="false"
+                            aria-controls="flush-collapseThreew" @endif
+                                    href="#">
+                                    @if ($catdetails->icon != null)
+                                        <i class="{{ $catdetails->icon }}"></i>
+                                    @endif {{ $catdetails->name }}
+                                </a>
+                                @if (count($catdetails->SubCategory) > 0)
+                                    <div id="flush-collapseThreew" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                @foreach ($catdetails->SubCategory as $subcatdetails)
+                                                    <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                                        data-bs-target="#flush-collapseThreew" aria-expanded="false"
+                                                        aria-controls="flush-collapseThreew">{{ $subcatdetails->name }}</a>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endif
+                            </li>
+                        @endforeach
+
                         <li><a href="#"><i class="fas fa-star"></i> hot promotions</a></li>
                         <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseThreew" aria-expanded="false"
@@ -35,7 +60,9 @@
                                 data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     <ul>
-                                        <li><a href="#">men's</a></li>
+                                        <li><a href="#" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseThreew" aria-expanded="false"
+                                            aria-controls="flush-collapseThreew"><i class="fal fa-tshirt"></i>>men's</a></li>
                                         <li><a href="#">wemen's</a></li>
                                         <li><a href="#">kid's</a></li>
                                         <li><a href="#">others</a></li>

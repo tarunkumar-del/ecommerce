@@ -53,8 +53,8 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control" name="status">
-                                      <option value="active" {{$slider->status == 'Active' ? 'selected' : '' }}>Active</option>
-                                      <option value="inactive" {{ $slider->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                                      <option value="active" {{$slider->status == 'active' ? 'selected' : '' }}>Active</option>
+                                      <option value="inactive" {{ $slider->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
                                     </select>
                                   </div>
                                 <button type="submit" class="btn btn-primary">Create</button>

@@ -25,6 +25,7 @@
     <!-- Start GA -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{asset('backend/assets/css/bootstrap-iconpicker.min.css')}}">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -84,6 +85,7 @@
 
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{asset('backend/assets/js/bootstrap-iconpicker.bundle.min.js')}}"></script>
     <script>
         @if ($errors->any())
             @foreach ($errors->all() as $error)
@@ -100,7 +102,7 @@
                 }
             });
             $('body').on('click', '.delete-item', function(event) {
-                alert('sss');
+
                 event.preventDefault();
                 let deleteUrl = $(this).attr('href');
                 Swal.fire({
