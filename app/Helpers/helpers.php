@@ -1,21 +1,11 @@
 <?php
-use App\Models\User;
-use Illuminate\Support\Facades\Config;
-
-function type($request)
-{
-
-    $user = $request->user();
-
-    if ($user) {
-        $user = User::find($user->id);
-
-        if ($user instanceof User){
-        //    foreach($user->roles as $details)
-            Config::set('type.global_auth_value', $user->roles[0]->name);
-            return true;
+/** sidebar active */
+function setActive(array $active){
+    if(is_array($active)){
+        foreach($active as $r){
+                if(request()->routeIs($r)){
+                    return 'active';
+                }
         }
-        return false;
     }
-    return false;
 }
